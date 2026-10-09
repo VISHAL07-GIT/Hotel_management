@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Dr. Driving 3D — Real Car Simulator</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script type="module" crossorigin src="/assets/index-DqD1AZx9.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-CoTgoYAk.css">
+</head>
+<body>
+
+  <!-- Three.js Canvas Container -->
+  <div id="game-container"></div>
+
+  <!-- 1. MAIN MENU SCREEN -->
+  <div id="main-menu-screen" class="ui-screen">
+    <div class="top-bar">
+      <div class="brand-title">🚗 DR. DRIVING 3D</div>
+      <div class="stats-container">
+        <div class="stat-badge"><span class="icon">🪙</span> <span id="user-coins-display">2,500</span></div>
+        <div class="stat-badge"><span class="icon">⭐</span> <span id="user-level-display">Lvl 1</span></div>
+      </div>
+    </div>
+
+    <div class="menu-card glass-panel">
+      <div class="menu-title">REAL CAR SIMULATOR</div>
+      <div style="font-size: 0.95rem; color: var(--text-muted)">Master City Driving, Parking & Traffic Rules</div>
+      
+      <div class="menu-buttons">
+        <button id="btn-play-menu" class="btn-primary">▶ DRIVE / MISSIONS</button>
+        <button id="btn-garage-menu" class="btn-secondary">🚘 CAR GARAGE</button>
+        <button id="btn-settings-menu" class="btn-secondary">⚙️ SETTINGS</button>
+      </div>
+    </div>
+
+    <div style="padding: 16px; font-size: 0.85rem; color: var(--text-muted)">Controls: Keyboard (WASD) or Touch Controls (Buttons / Wheel)</div>
+  </div>
+
+  <!-- 2. GARAGE OVERLAY HUD -->
+  <div id="garage-screen" class="ui-screen hidden">
+    <div class="top-bar">
+      <button id="btn-garage-back" class="btn-secondary">← BACK</button>
+      <div class="stats-container">
+        <div class="stat-badge"><span class="icon">🪙</span> <span id="garage-coins">2,500</span></div>
+      </div>
+    </div>
+
+    <div style="display:flex; justify-between; align-items:center; padding:0 24px; width:100%">
+      <button id="btn-garage-prev" class="btn-secondary btn-icon">◀</button>
+      <div style="text-align:center">
+        <h2 id="garage-car-name" style="font-size:2rem; font-weight:900; color:var(--primary-gold)">Compact Hatchback</h2>
+        <div style="margin-top:10px">
+          <button id="btn-garage-buy" class="btn-primary">UNLOCK (5,000 🪙)</button>
+          <button id="btn-garage-select" class="btn-primary">DRIVE THIS</button>
+        </div>
+      </div>
+      <button id="btn-garage-next" class="btn-secondary btn-icon">▶</button>
+    </div>
+
+    <div class="glass-panel" style="margin:20px; padding:20px; max-width:480px">
+      <div style="font-weight:800; margin-bottom:12px; color:var(--accent-cyan)">PAINT COLOR</div>
+      <div class="color-swatches">
+        <div class="color-swatch" style="background:#e63946" data-color="#e63946"></div>
+        <div class="color-swatch" style="background:#1d3557" data-color="#1d3557"></div>
+        <div class="color-swatch" style="background:#2a9d8f" data-color="#2a9d8f"></div>
+        <div class="color-swatch" style="background:#ffb703" data-color="#ffb703"></div>
+        <div class="color-swatch" style="background:#111111" data-color="#111111"></div>
+        <div class="color-swatch" style="background:#845ec2" data-color="#845ec2"></div>
+      </div>
+
+      <div style="font-weight:800; margin:16px 0 10px 0; color:var(--accent-cyan)">PERFORMANCE UPGRADES</div>
+      <div id="garage-upgrades-list" class="upgrade-list"></div>
+    </div>
+  </div>
+
+  <!-- 3. IN-GAME DRIVING HUD -->
+  <div id="hud-screen" class="ui-screen hidden">
+    <!-- Top HUD Bar -->
+    <div class="hud-top">
+      <div class="objective-box">
+        <div class="objective-title">Current Objective</div>
+        <div id="hud-objective-text" class="objective-text">Drive safely to destination</div>
+      </div>
+
+      <div id="hud-timer-text" class="hud-center-timer">60s</div>
+
+      <div style="display:flex; gap:12px; align-items:center">
+        <canvas id="minimap-canvas"></canvas>
+        <button id="btn-pause-hud" class="btn-secondary btn-icon">⏸</button>
+      </div>
+    </div>
+
+    <!-- Bottom Controls Bar -->
+    <div class="hud-bottom">
+      <!-- Steering Container (Supports both Wheel and Buttons mode) -->
+      <div class="steer-controls-zone">
+        <!-- Wheel Mode -->
+        <div id="wheel-container" class="wheel-container">
+          <div id="steering-wheel"></div>
+        </div>
+
+        <!-- Buttons Mode -->
+        <div id="steer-buttons-container" class="steer-buttons-container hidden">
+          <button id="btn-steer-left" class="btn-steer-arrow">◀</button>
+          <button id="btn-steer-right" class="btn-steer-arrow">▶</button>
+        </div>
+      </div>
+
+      <!-- Center Gauges & Gear Selector -->
+      <div class="hud-center-gauges">
+        <div class="gear-selector">
+          <button id="gear-p" class="gear-btn">P</button>
+          <button id="gear-r" class="gear-btn">R</button>
+          <button id="gear-d" class="gear-btn active">D</button>
+        </div>
+        <div class="speed-digital"><span id="digital-speed">0</span></div>
+        <div class="speed-unit">KM/H</div>
+
+        <div style="display:flex; gap:8px; margin-top:4px">
+          <button id="btn-horn" class="btn-secondary" style="padding:4px 8px; font-size:0.8rem">📢 HORN</button>
+          <button id="btn-lights" class="btn-secondary" style="padding:4px 8px; font-size:0.8rem">💡 LIGHTS</button>
+          <button id="btn-toggle-control-type" class="btn-secondary" style="padding:4px 8px; font-size:0.8rem">🔄 STEER MODE</button>
+        </div>
+      </div>
+
+      <!-- Pedals -->
+      <div class="pedals-container">
+        <div id="pedal-brake" class="pedal-btn pedal-brake">
+          <span>🛑</span>
+          <span>BRAKE</span>
+        </div>
+        <div id="pedal-accel" class="pedal-btn pedal-accel">
+          <span>⚡</span>
+          <span>GAS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. MISSION SELECTOR MODAL -->
+  <div id="mission-selector-modal" class="modal-overlay hidden">
+    <div class="modal-card glass-panel">
+      <div class="modal-header">
+        <div class="modal-title">SELECT MISSION</div>
+        <button id="btn-close-missions" class="btn-secondary btn-icon">✕</button>
+      </div>
+      <div id="missions-grid" class="missions-grid"></div>
+    </div>
+  </div>
+
+  <!-- 5. PAUSE MODAL -->
+  <div id="pause-modal" class="modal-overlay hidden">
+    <div class="modal-card glass-panel" style="text-align:center">
+      <h2 style="font-size:2rem; color:var(--primary-gold)">GAME PAUSED</h2>
+      <div style="display:flex; flex-direction:column; gap:14px; margin-top:20px">
+        <button id="btn-resume" class="btn-primary">RESUME GAME</button>
+        <button id="btn-quit-main" class="btn-secondary">MAIN MENU</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. VICTORY MODAL -->
+  <div id="victory-modal" class="modal-overlay hidden">
+    <div class="modal-card glass-panel" style="text-align:center">
+      <h2 id="victory-title" style="font-size:2.2rem; color:var(--success)">MISSION COMPLETED!</h2>
+      <div id="victory-stars" style="font-size:3rem; color:var(--primary-gold); margin:10px 0">★★★</div>
+      <div style="font-size:1.4rem; font-weight:800">Reward: <span id="victory-reward" style="color:var(--primary-gold)">+800 🪙</span></div>
+      
+      <div style="margin-top:24px">
+        <button id="btn-next-mission" class="btn-primary">CONTINUE</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. DEFEAT MODAL -->
+  <div id="defeat-modal" class="modal-overlay hidden">
+    <div class="modal-card glass-panel" style="text-align:center">
+      <h2 style="font-size:2.2rem; color:var(--danger)">MISSION FAILED</h2>
+      <div id="defeat-reason" style="font-size:1.1rem; margin:14px 0; color:var(--text-muted)">Car Crashed!</div>
+      
+      <div style="margin-top:20px; display:flex; gap:12px; justify-center">
+        <button id="btn-retry-mission" class="btn-primary">RETRY</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. SETTINGS MODAL -->
+  <div id="settings-modal" class="modal-overlay hidden">
+    <div class="modal-card glass-panel">
+      <div class="modal-header">
+        <div class="modal-title">SETTINGS</div>
+        <button onclick="document.getElementById('settings-modal').classList.add('hidden')" class="btn-secondary btn-icon">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:16px">
+        <div style="display:flex; justify-between; align-items:center">
+          <span>Audio & Engine Sound</span>
+          <button id="btn-toggle-sound" class="btn-secondary">MUTE / UNMUTE</button>
+        </div>
+        <div style="display:flex; justify-between; align-items:center">
+          <span>Time of Day</span>
+          <select id="select-timeofday" class="btn-secondary" style="color:#fff">
+            <option value="day">Daylight</option>
+            <option value="sunset">Sunset</option>
+            <option value="night">Night</option>
+          </select>
+        </div>
+        <div style="display:flex; justify-between; align-items:center">
+          <span>Weather Effect</span>
+          <button id="btn-toggle-rain" class="btn-secondary">TOGGLE RAIN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

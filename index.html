@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodie Hub | Premium Fine Dining & Online Ordering</title>
+    <meta name="description" content="Experience gourmet cuisine at Foodie Hub. Order online, reserve tables, track orders live, and enjoy special culinary offers.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="navbar-header" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="brand-logo">
+                <img src="images/logo.jpg" alt="Foodie Hub Logo" class="logo-img" id="appLogo">
+                <div class="brand-text">
+                    <span class="brand-name">FOODIE<span class="highlight">HUB</span></span>
+                    <span class="brand-tagline">Gourmet & Fine Dining</span>
+                </div>
+            </a>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#home" class="nav-item active"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="#menu" class="nav-item"><i class="fa-solid fa-utensils"></i> Menu</a>
+                <a href="#cart-payment" class="nav-item" id="navCartPay"><i class="fa-solid fa-credit-card"></i> Cart & Pay</a>
+                <a href="#booking" class="nav-item"><i class="fa-solid fa-calendar-check"></i> Book Table</a>
+                <a href="#tracker" class="nav-item"><i class="fa-solid fa-location-crosshairs"></i> Live Tracker</a>
+                <a href="#rewards" class="nav-item"><i class="fa-solid fa-crown"></i> Rewards</a>
+                <a href="#about" class="nav-item"><i class="fa-solid fa-circle-info"></i> About & Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="cart-trigger-btn" id="cartBtn" aria-label="Open Shopping Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge" id="cartBadge">0</span>
+                    <span class="cart-btn-label">Cart</span>
+                </button>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Body -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section" id="home">
+            <div class="hero-bg-overlay"></div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="badge-pill">
+                        <i class="fa-solid fa-fire"></i> Award-Winning Culinary Experience
+                    </div>
+                    <h1 class="hero-title">
+                        Savor Every <span class="text-gradient">Extraordinary</span> Bite
+                    </h1>
+                    <p class="hero-subtitle">
+                        Immerse yourself in artisanal flavors crafted by world-class chefs. Fresh organic ingredients, swift doorstep delivery, and unforgettable dining.
+                    </p>
+                    <div class="hero-cta-group">
+                        <a href="#menu" class="btn btn-primary btn-glow">
+                            <i class="fa-solid fa-utensils"></i> Explore Menu
+                        </a>
+                        <a href="#cart-payment" class="btn btn-secondary">
+                            <i class="fa-solid fa-bag-shopping"></i> Checkout Cart
+                        </a>
+                        <button class="btn btn-outline" id="smartFinderBtn">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Smart Food Finder
+                        </button>
+                    </div>
+
+                    <!-- Quick Highlight Stats -->
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-num">4.9 ★</span>
+                            <span class="stat-lbl">12k+ Reviews</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-num">25 Mins</span>
+                            <span class="stat-lbl">Avg. Delivery</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-num">100%</span>
+                            <span class="stat-lbl">Fresh & Organic</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-image-wrapper">
+                        <img src="images/hero_banner.jpg" alt="Signature Gourmet Dish" class="hero-img">
+                        <div class="floating-card offer-card">
+                            <div class="offer-icon"><i class="fa-solid fa-bolt"></i></div>
+                            <div class="offer-info">
+                                <span class="offer-title">Special 20% OFF</span>
+                                <span class="offer-code">Use Code: <strong>FOODIE20</strong></span>
+                            </div>
+                        </div>
+                        <div class="floating-card rating-card">
+                            <div class="chef-avatar">👨‍🍳</div>
+                            <div class="rating-info">
+                                <span class="rating-title">Chef's Choice</span>
+                                <span class="rating-sub">Truffle Ribeye Steak</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Special Offers Ticker Section -->
+        <section class="ticker-section">
+            <div class="ticker-wrapper">
+                <div class="ticker-item"><i class="fa-solid fa-gift"></i> Flat ₹100 OFF on orders above ₹499 - Code: <strong>WELCOME100</strong></div>
+                <div class="ticker-item"><i class="fa-solid fa-motorcycle"></i> Free Express Delivery on All Orders Today!</div>
+                <div class="ticker-item"><i class="fa-solid fa-star"></i> Earn 10 Reward Points for every ₹100 spent!</div>
+                <div class="ticker-item"><i class="fa-solid fa-clock"></i> Open 7 Days a Week (10:00 AM - 11:30 PM)</div>
+            </div>
+        </section>
+
+        <!-- Popular Dishes Quick Highlights -->
+        <section class="popular-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <div>
+                        <span class="sub-heading"><i class="fa-solid fa-fire-flame-curated"></i> Top Rated Specials</span>
+                        <h2 class="section-title">Popular Chef Recommendations</h2>
+                    </div>
+                    <a href="#menu" class="link-btn">View Full Menu <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="popular-grid" id="popularGrid">
+                    <!-- Populated dynamically by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Food Menu Section -->
+        <section class="menu-section" id="menu">
+            <div class="section-container">
+                <div class="section-header text-center">
+                    <span class="sub-heading"><i class="fa-solid fa-book-open"></i> Taste The Quality</span>
+                    <h2 class="section-title">Our Delicacies Menu</h2>
+                    <p class="section-desc">Handcrafted recipes using locally sourced ingredients, prepared fresh on order.</p>
+                </div>
+
+                <!-- Menu Controls: Search, Dietary Toggles & Categories -->
+                <div class="menu-controls-card">
+                    <div class="search-filter-row">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="menuSearchInput" placeholder="Search pizza, burger, biryani, shake...">
+                            <button class="clear-search-btn" id="clearSearchBtn" aria-label="Clear Search"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+
+                        <div class="diet-toggle-group">
+                            <button class="diet-btn active" data-diet="all">All Items</button>
+                            <button class="diet-btn veg-btn" data-diet="veg"><span class="dot veg-dot"></span> Pure Veg</button>
+                            <button class="diet-btn nonveg-btn" data-diet="non-veg"><span class="dot nonveg-dot"></span> Non-Veg</button>
+                        </div>
+                    </div>
+
+                    <!-- Category Tabs -->
+                    <div class="category-tabs" id="categoryTabs">
+                        <button class="cat-tab active" data-category="all"><i class="fa-solid fa-border-all"></i> All Categories</button>
+                        <button class="cat-tab" data-category="breakfast"><i class="fa-solid fa-mug-hot"></i> Breakfast</button>
+                        <button class="cat-tab" data-category="lunch"><i class="fa-solid fa-bowl-rice"></i> Lunch & Main</button>
+                        <button class="cat-tab" data-category="dinner"><i class="fa-solid fa-drumstick-bite"></i> Dinner Specials</button>
+                        <button class="cat-tab" data-category="drinks"><i class="fa-solid fa-glass-water"></i> Beverages & Shakes</button>
+                        <button class="cat-tab" data-category="dessert"><i class="fa-solid fa-cake-candles"></i> Desserts</button>
+                    </div>
+                </div>
+
+                <!-- Menu Items Grid -->
+                <div class="menu-grid" id="menuGrid">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ADVANCED CART & PAYMENT PAGE / SECTION -->
+        <section class="cart-payment-section" id="cart-payment">
+            <div class="section-container">
+                <div class="section-header text-center">
+                    <span class="sub-heading"><i class="fa-solid fa-shield-halved"></i> 256-Bit Encrypted Checkout</span>
+                    <h2 class="section-title">Your Cart & Payment Details</h2>
+                    <p class="section-desc">Review your selected dishes, customize order add-ons, enter delivery location and choose your payment method.</p>
+                </div>
+
+                <!-- Step Wizard Bar -->
+                <div class="checkout-step-bar">
+                    <div class="step-bar-item active" id="stepBar1">
+                        <span class="step-num">1</span>
+                        <span class="step-text">Review Cart (<span id="cartItemCountStep">0</span>)</span>
+                    </div>
+                    <div class="step-bar-divider"></div>
+                    <div class="step-bar-item active" id="stepBar2">
+                        <span class="step-num">2</span>
+                        <span class="step-text">Delivery Address</span>
+                    </div>
+                    <div class="step-bar-divider"></div>
+                    <div class="step-bar-item active" id="stepBar3">
+                        <span class="step-num">3</span>
+                        <span class="step-text">Payment Method</span>
+                    </div>
+                </div>
+
+                <div class="cart-payment-grid">
+                    <!-- Left Column: Cart Items & Add-ons -->
+                    <div class="cart-items-column">
+                        <div class="panel-card">
+                            <div class="panel-header">
+                                <h3><i class="fa-solid fa-bag-shopping text-gold"></i> Selected Dishes</h3>
+                                <button class="btn btn-outline btn-sm" id="clearCartBtn"><i class="fa-solid fa-trash-can"></i> Clear All</button>
+                            </div>
+                            
+                            <div class="panel-body" id="pageCartItemsList">
+                                <!-- Cart items populated dynamically -->
+                            </div>
+
+                            <!-- Recommended Add-ons -->
+                            <div class="addons-container">
+                                <h4><i class="fa-solid fa-plus-circle text-gold"></i> Frequently Added Extras</h4>
+                                <div class="addons-grid">
+                                    <div class="addon-chip" onclick="addExtraAddon('Extra Cheese Melt', 40)">
+                                        <span>🧀 Extra Cheese Slice</span>
+                                        <strong>+₹40</strong>
+                                        <i class="fa-solid fa-plus"></i>
+                                    </div>
+                                    <div class="addon-chip" onclick="addExtraAddon('Garlic Butter Dip', 30)">
+                                        <span>🧄 Garlic Butter Dip</span>
+                                        <strong>+₹30</strong>
+                                        <i class="fa-solid fa-plus"></i>
+                                    </div>
+                                    <div class="addon-chip" onclick="addExtraAddon('Cold Lemon Mint Drink', 60)">
+                                        <span>🍋 Cold Lemon Mint</span>
+                                        <strong>+₹60</strong>
+                                        <i class="fa-solid fa-plus"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bill Calculation Summary -->
+                            <div class="page-bill-box">
+                                <div class="bill-row">
+                                    <span>Items Total</span>
+                                    <strong id="pageSubtotal">₹0</strong>
+                                </div>
+                                <div class="bill-row">
+                                    <span>GST & Restaurant Charges (5%)</span>
+                                    <strong id="pageTax">₹0</strong>
+                                </div>
+                                <div class="bill-row">
+                                    <span>Delivery Fee</span>
+                                    <strong id="pageDelivery">₹40</strong>
+                                </div>
+                                <div class="bill-row page-discount-row" id="pageDiscountRow" style="display: none;">
+                                    <span>Promo Coupon Discount</span>
+                                    <strong id="pageDiscountVal">-₹0</strong>
+                                </div>
+                                <div class="bill-row total-row">
+                                    <span>Grand Total Payable</span>
+                                    <strong id="pageGrandTotal">₹0</strong>
+                                </div>
+                            </div>
+
+                            <!-- Promo Code Applied Banner -->
+                            <div class="page-promo-wrapper">
+                                <div class="promo-code-box">
+                                    <input type="text" id="pagePromoInput" placeholder="ENTER PROMO CODE (e.g. FOODIE20)" style="text-transform: uppercase;">
+                                    <button class="btn btn-secondary btn-sm" id="pageApplyPromoBtn">Apply Offer</button>
+                                </div>
+                                <div class="promo-hint">Available Offers: <strong>FOODIE20</strong> (20% OFF) | <strong>WELCOME100</strong> (Flat ₹100 OFF)</div>
+                                <div class="promo-msg" id="pagePromoMsg"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Delivery Details & Payment Options -->
+                    <div class="payment-details-column">
+                        <!-- Delivery Address Card -->
+                        <div class="panel-card mb-24">
+                            <div class="panel-header">
+                                <h3><i class="fa-solid fa-truck-ramp-box text-gold"></i> Delivery Information</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form id="pageDeliveryForm" class="delivery-form">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="pCustName">Full Name *</label>
+                                            <input type="text" id="pCustName" placeholder="Enter recipient name" required value="Alex Morgan">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pCustPhone">Phone Number *</label>
+                                            <input type="tel" id="pCustPhone" placeholder="10-digit mobile number" required value="9876543210">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="pCustAddress">Complete Delivery Address *</label>
+                                        <textarea id="pCustAddress" rows="2" placeholder="House/Flat No., Building Name, Street & Area" required>Flat 402, Sunshine Heights, Gourmet Street, Sector 12</textarea>
+                                    </div>
+
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="pCustLandmark">Landmark (Optional)</label>
+                                            <input type="text" id="pCustLandmark" placeholder="Near Metro Station / Mall">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pCustType">Address Tag</label>
+                                            <select id="pCustType">
+                                                <option value="Home">🏠 Home</option>
+                                                <option value="Work">🏢 Office / Work</option>
+                                                <option value="Other">📍 Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Payment Options Card -->
+                        <div class="panel-card">
+                            <div class="panel-header">
+                                <h3><i class="fa-solid fa-credit-card text-gold"></i> Choose Payment Method</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="payment-tabs-nav">
+                                    <button class="pay-tab-btn active" data-paytab="upi">
+                                        <i class="fa-solid fa-qrcode"></i> UPI / QR Scan
+                                    </button>
+                                    <button class="pay-tab-btn" data-paytab="card">
+                                        <i class="fa-solid fa-credit-card"></i> Card (Debit/Credit)
+                                    </button>
+                                    <button class="pay-tab-btn" data-paytab="netbanking">
+                                        <i class="fa-solid fa-building-columns"></i> Net Banking
+                                    </button>
+                                    <button class="pay-tab-btn" data-paytab="cod">
+                                        <i class="fa-solid fa-money-bill-wave"></i> Cash on Delivery
+                                    </button>
+                                </div>
+
+                                <!-- Tab 1: UPI & QR Code -->
+                                <div class="pay-tab-content active" id="paytab-upi">
+                                    <div class="upi-box text-center">
+                                        <p class="upi-instruction">Scan this QR Code using any UPI App (GPay, PhonePe, Paytm, BHIM):</p>
+                                        
+                                        <!-- Simulated Dynamic QR Code -->
+                                        <div class="qr-code-frame">
+                                            <div class="qr-code-graphic">
+                                                <i class="fa-solid fa-qrcode qr-icon"></i>
+                                                <span class="qr-label">FOODIE HUB MERCH</span>
+                                            </div>
+                                            <span class="qr-amount-tag">Amount: <strong id="upiQrAmount">₹0</strong></span>
+                                        </div>
+
+                                        <div class="upi-apps-row">
+                                            <span class="upi-app-badge">Google Pay</span>
+                                            <span class="upi-app-badge">PhonePe</span>
+                                            <span class="upi-app-badge">Paytm</span>
+                                            <span class="upi-app-badge">CRED UPI</span>
+                                        </div>
+
+                                        <div class="upi-id-input-wrap">
+                                            <input type="text" id="upiVpaInput" placeholder="Or Enter VPA (e.g. 9876543210@paytm)">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Tab 2: Credit / Debit Card -->
+                                <div class="pay-tab-content" id="paytab-card">
+                                    <form id="cardPaymentForm" class="card-form">
+                                        <div class="form-group">
+                                            <label>Card Number *</label>
+                                            <div class="input-icon-wrap">
+                                                <i class="fa-solid fa-credit-card"></i>
+                                                <input type="text" id="cardNumberInput" maxlength="19" placeholder="4532 •••• •••• 8921" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-grid">
+                                            <div class="form-group">
+                                                <label>Expiry Date *</label>
+                                                <input type="text" id="cardExpiryInput" maxlength="5" placeholder="MM/YY" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>CVV / CVC *</label>
+                                                <input type="password" id="cardCvvInput" maxlength="3" placeholder="•••" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Name on Card *</label>
+                                            <input type="text" id="cardHolderInput" placeholder="Cardholder full name" required>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <!-- Tab 3: Net Banking -->
+                                <div class="pay-tab-content" id="paytab-netbanking">
+                                    <div class="bank-grid">
+                                        <label class="bank-card active">
+                                            <input type="radio" name="bankSelect" value="HDFC" checked>
+                                            <span>🏦 HDFC Bank</span>
+                                        </label>
+                                        <label class="bank-card">
+                                            <input type="radio" name="bankSelect" value="SBI">
+                                            <span>🏛️ State Bank of India</span>
+                                        </label>
+                                        <label class="bank-card">
+                                            <input type="radio" name="bankSelect" value="ICICI">
+                                            <span>💳 ICICI Bank</span>
+                                        </label>
+                                        <label class="bank-card">
+                                            <input type="radio" name="bankSelect" value="AXIS">
+                                            <span>🏦 Axis Bank</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Tab 4: Cash on Delivery -->
+                                <div class="pay-tab-content" id="paytab-cod">
+                                    <div class="cod-box">
+                                        <div class="cod-alert">
+                                            <i class="fa-solid fa-hand-holding-dollar text-gold"></i>
+                                            <div>
+                                                <h4>Pay Cash Upon Delivery</h4>
+                                                <p>Please keep exact change ready for our delivery executive when your hot food arrives.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="tip-section">
+                                            <label>Add Delivery Partner Tip (100% goes to driver):</label>
+                                            <div class="tip-buttons">
+                                                <button class="tip-btn" data-tip="20">₹20</button>
+                                                <button class="tip-btn active" data-tip="30">₹30</button>
+                                                <button class="tip-btn" data-tip="50">₹50</button>
+                                                <button class="tip-btn" data-tip="0">No Tip</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Dynamic Pay CTA Button -->
+                                <button class="btn btn-primary btn-block btn-glow pay-now-submit-btn" id="executeOrderPaymentBtn">
+                                    <i class="fa-solid fa-lock"></i> Pay <span id="payCtaAmount">₹0</span> & Complete Order
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Smart Food Finder Modal -->
+        <div class="modal-overlay" id="smartFinderModal">
+            <div class="modal-card smart-finder-card">
+                <div class="modal-header">
+                    <h3><i class="fa-solid fa-wand-magic-sparkles text-gold"></i> Smart Food Finder</h3>
+                    <button class="modal-close" id="closeSmartFinder"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="modal-body">
+                    <p class="modal-desc">Not sure what to eat? Answer 3 quick questions and let our algorithm recommend your perfect dish!</p>
+                    
+                    <div class="finder-step">
+                        <label class="finder-label"><i class="fa-solid fa-wallet"></i> 1. Maximum Budget per Item (₹)</label>
+                        <div class="budget-slider-wrap">
+                            <input type="range" id="finderBudgetRange" min="100" max="1000" step="50" value="500">
+                            <span class="budget-val" id="finderBudgetValue">₹500</span>
+                        </div>
+                    </div>
+
+                    <div class="finder-step">
+                        <label class="finder-label"><i class="fa-solid fa-utensils"></i> 2. Dietary Preference</label>
+                        <div class="option-grid">
+                            <button class="finder-opt-btn active" data-finder-diet="any">Anything Delicious</button>
+                            <button class="finder-opt-btn" data-finder-diet="veg">🌿 Pure Vegetarian</button>
+                            <button class="finder-opt-btn" data-finder-diet="non-veg">🍗 Non-Vegetarian</button>
+                        </div>
+                    </div>
+
+                    <div class="finder-step">
+                        <label class="finder-label"><i class="fa-solid fa-clock"></i> 3. Meal Mood / Occasion</label>
+                        <div class="option-grid">
+                            <button class="finder-opt-btn active" data-finder-meal="all">Anytime Snack</button>
+                            <button class="finder-opt-btn" data-finder-meal="quick">⚡ Quick Prep (< 20 mins)</button>
+                            <button class="finder-opt-btn" data-finder-meal="heavy">👑 Feast / Full Meal</button>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-block" id="applyFinderBtn">
+                        <i class="fa-solid fa-magnifying-glass"></i> Find My Match
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Booking Section -->
+        <section class="booking-section" id="booking">
+            <div class="section-container">
+                <div class="booking-card-grid">
+                    <div class="booking-info-column">
+                        <span class="sub-heading"><i class="fa-solid fa-glass-cheers"></i> Reservation</span>
+                        <h2 class="section-title">Book A Dining Table</h2>
+                        <p class="section-desc">Planning a romantic dinner, family gathering, or business lunch? Reserve your table in advance and skip the waiting queue.</p>
+
+                        <div class="perks-list">
+                            <div class="perk-item">
+                                <div class="perk-icon"><i class="fa-solid fa-couch"></i></div>
+                                <div>
+                                    <h4>Choice of Seating</h4>
+                                    <p>Select VIP rooms, romantic candlelight spots or garden view tables.</p>
+                                </div>
+                            </div>
+                            <div class="perk-item">
+                                <div class="perk-icon"><i class="fa-solid fa-wine-glass"></i></div>
+                                <div>
+                                    <h4>Complementary Welcome Drink</h4>
+                                    <p>Enjoy our signature mocktail on every online reservation.</p>
+                                </div>
+                            </div>
+                            <div class="perk-item">
+                                <div class="perk-icon"><i class="fa-solid fa-bell-concierge"></i></div>
+                                <div>
+                                    <h4>Instant SMS & WhatsApp Confirmation</h4>
+                                    <p>Receive your booking details immediately with zero hassle.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="booking-form-column">
+                        <form class="booking-form" id="tableBookingForm">
+                            <h3 class="form-title"><i class="fa-solid fa-calendar-days text-gold"></i> Reserve Table</h3>
+                            
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="bookName">Full Name *</label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fa-solid fa-user"></i>
+                                        <input type="text" id="bookName" placeholder="John Doe" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="bookPhone">Phone Number *</label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fa-solid fa-phone"></i>
+                                        <input type="tel" id="bookPhone" placeholder="+91 98765 43210" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="bookDate">Date *</label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fa-solid fa-calendar"></i>
+                                        <input type="date" id="bookDate" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="bookTime">Time Slot *</label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fa-solid fa-clock"></i>
+                                        <select id="bookTime" required>
+                                            <option value="">Select Time Slot</option>
+                                            <option value="12:00 PM">12:00 PM (Lunch)</option>
+                                            <option value="01:30 PM">01:30 PM (Lunch)</option>
+                                            <option value="07:00 PM">07:00 PM (Dinner)</option>
+                                            <option value="08:30 PM">08:30 PM (Dinner)</option>
+                                            <option value="09:30 PM">09:30 PM (Late Night)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="bookGuests">Number of Guests *</label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fa-solid fa-user-group"></i>
+                                        <select id="bookGuests" required>
+                                            <option value="1">1 Person (Single)</option>
+                                            <option value="2" selected>2 Guests (Couple)</option>
+                                            <option value="4">4 Guests (Family)</option>
+                                            <option value="6">6 Guests (Group)</option>
+                                            <option value="10">10+ Guests (Party)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="bookSeating">Ambience Preference</label>
+                                    <div class="input-icon-wrap">
+                                        <i class="fa-solid fa-sparkles"></i>
+                                        <select id="bookSeating">
+                                            <option value="Standard Dining">Standard Dining Area</option>
+                                            <option value="Romantic Candlelight">Romantic Candlelight Table</option>
+                                            <option value="Window View">Glass Window View</option>
+                                            <option value="VIP Private Room">VIP Private Dining Room</option>
+                                            <option value="Outdoor Terrace">Outdoor Garden Terrace</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bookNotes">Special Requests (Optional)</label>
+                                <textarea id="bookNotes" rows="2" placeholder="Birthday celebration, high chair, flower arrangement, etc."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block btn-glow">
+                                <i class="fa-solid fa-circle-check"></i> Confirm Reservation
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Order Tracking Section -->
+        <section class="tracker-section" id="tracker">
+            <div class="section-container">
+                <div class="section-header text-center">
+                    <span class="sub-heading"><i class="fa-solid fa-route"></i> Real-Time Updates</span>
+                    <h2 class="section-title">Live Order Tracker</h2>
+                    <p class="section-desc">Track your food preparation and delivery progress step-by-step.</p>
+                </div>
+
+                <div class="tracker-card">
+                    <div class="tracker-search-bar">
+                        <input type="text" id="trackerInput" placeholder="Enter Order ID (e.g. #FH-8942)" value="#FH-8942">
+                        <button class="btn btn-primary" id="trackOrderBtn"><i class="fa-solid fa-magnifying-glass"></i> Track Order</button>
+                    </div>
+
+                    <div class="tracker-status-box" id="trackerStatusBox">
+                        <div class="tracker-meta">
+                            <div>
+                                <span class="order-id-tag">Order ID: <strong id="trackDisplayId">#FH-8942</strong></span>
+                                <span class="order-time-tag">Estimated Delivery: <strong id="trackEta">22 Mins</strong></span>
+                            </div>
+                            <div class="sim-btn-wrap">
+                                <button class="btn btn-secondary btn-sm" id="simStepBtn"><i class="fa-solid fa-forward-step"></i> Simulate Next Phase</button>
+                            </div>
+                        </div>
+
+                        <!-- Progress Bar Timeline -->
+                        <div class="timeline-container">
+                            <div class="timeline-progress-line" id="timelineProgress"></div>
+
+                            <div class="timeline-step active" data-step="1">
+                                <div class="step-icon"><i class="fa-solid fa-receipt"></i></div>
+                                <div class="step-label">Order Received</div>
+                                <div class="step-time">Just Now</div>
+                            </div>
+
+                            <div class="timeline-step active" data-step="2">
+                                <div class="step-icon"><i class="fa-solid fa-fire-burner"></i></div>
+                                <div class="step-label">Preparing in Kitchen</div>
+                                <div class="step-time">In Progress</div>
+                            </div>
+
+                            <div class="timeline-step" data-step="3">
+                                <div class="step-icon"><i class="fa-solid fa-box-check"></i></div>
+                                <div class="step-label">Quality & Packaging</div>
+                                <div class="step-time">Pending</div>
+                            </div>
+
+                            <div class="timeline-step" data-step="4">
+                                <div class="step-icon"><i class="fa-solid fa-motorcycle"></i></div>
+                                <div class="step-label">Out for Delivery</div>
+                                <div class="step-time">Pending</div>
+                            </div>
+
+                            <div class="timeline-step" data-step="5">
+                                <div class="step-icon"><i class="fa-solid fa-house-chimney-check"></i></div>
+                                <div class="step-label">Delivered</div>
+                                <div class="step-time">Pending</div>
+                            </div>
+                        </div>
+
+                        <!-- Delivery Hero Card -->
+                        <div class="driver-card" id="driverCard">
+                            <div class="driver-avatar">🏍️</div>
+                            <div class="driver-info">
+                                <h4>Delivery Executive: <strong>Rahul Kumar</strong></h4>
+                                <p><i class="fa-solid fa-star text-gold"></i> 4.9 Rating • 1,240 deliveries completed</p>
+                            </div>
+                            <a href="tel:+919876543210" class="btn btn-outline btn-sm"><i class="fa-solid fa-phone"></i> Call Driver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Food Rewards & Loyalty Program -->
+        <section class="rewards-section" id="rewards">
+            <div class="section-container">
+                <div class="rewards-banner-card">
+                    <div class="rewards-content">
+                        <span class="sub-heading"><i class="fa-solid fa-crown"></i> VIP Loyalty Club</span>
+                        <h2>Earn Foodie Rewards With Every Order</h2>
+                        <p>Collect points whenever you order or book a table. Unlock exclusive vouchers, free desserts, and VIP priority dining!</p>
+
+                        <div class="points-display-box">
+                            <div class="points-circle">
+                                <span class="points-val" id="userPointsVal">350</span>
+                                <span class="points-lbl">Points</span>
+                            </div>
+                            <div class="points-meta">
+                                <h3>Current Tier: <span class="tier-badge gold-tier"><i class="fa-solid fa-medal"></i> Gold VIP Member</span></h3>
+                                <p>You need 150 more points to reach <strong>Platinum Tier</strong>!</p>
+                                <div class="tier-progress-bar">
+                                    <div class="tier-progress-fill" style="width: 70%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rewards-coupons-grid">
+                        <div class="coupon-card">
+                            <div class="coupon-badge">100 Pts</div>
+                            <h4>₹50 Off Coupon</h4>
+                            <p>Valid on any order above ₹299.</p>
+                            <button class="btn btn-sm btn-secondary redeem-btn" data-pts="100" data-discount="50">Redeem Voucher</button>
+                        </div>
+                        <div class="coupon-card">
+                            <div class="coupon-badge">250 Pts</div>
+                            <h4>Free Chef's Dessert</h4>
+                            <p>Get a complimentary Sizzling Brownie.</p>
+                            <button class="btn btn-sm btn-secondary redeem-btn" data-pts="250" data-discount="dessert">Redeem Voucher</button>
+                        </div>
+                        <div class="coupon-card highlight-coupon">
+                            <div class="coupon-badge">500 Pts</div>
+                            <h4>Flat ₹250 Off VIP Voucher</h4>
+                            <p>Exclusive Gold Member instant discount.</p>
+                            <button class="btn btn-sm btn-primary redeem-btn" data-pts="500" data-discount="250">Redeem Voucher</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us, Reviews & Contact Section -->
+        <section class="about-section" id="about">
+            <div class="section-container">
+                <div class="about-grid">
+                    <!-- About Info -->
+                    <div class="about-text-card">
+                        <span class="sub-heading"><i class="fa-solid fa-heart"></i> Our Story</span>
+                        <h2>Crafting Culinary Magic Since 2012</h2>
+                        <p>Foodie Hub started with a simple passion: to serve authentic, soul-satisfying culinary masterworks in a warm, welcoming ambience. Our Master Chefs blend centuries-old secret recipes with modern gastronomic techniques.</p>
+                        
+                        <div class="kitchen-highlights">
+                            <div class="kh-item"><i class="fa-solid fa-shield-halved text-gold"></i> 100% Hygiene Certified</div>
+                            <div class="kh-item"><i class="fa-solid fa-leaf text-gold"></i> Farm-Fresh Ingredients</div>
+                            <div class="kh-item"><i class="fa-solid fa-fire text-gold"></i> Traditional Clay Oven</div>
+                            <div class="kh-item"><i class="fa-solid fa-bolt text-gold"></i> Express Zero-Spill Delivery</div>
+                        </div>
+
+                        <!-- Opening Hours Card -->
+                        <div class="hours-card">
+                            <h4><i class="fa-solid fa-clock text-gold"></i> Opening Hours</h4>
+                            <div class="hours-row">
+                                <span>Monday - Thursday:</span>
+                                <strong>10:00 AM - 10:30 PM</strong>
+                            </div>
+                            <div class="hours-row">
+                                <span>Friday - Sunday:</span>
+                                <strong>09:30 AM - 11:30 PM</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location & Reviews Box -->
+                    <div class="location-reviews-card">
+                        <div class="map-card">
+                            <h4><i class="fa-solid fa-location-dot text-gold"></i> Visit Our Restaurant</h4>
+                            <p>124 Gourmet Boulevard, Foodie Street, Central Avenue, City 600001</p>
+                            <!-- Simulated Interactive Google Map Frame -->
+                            <div class="map-placeholder">
+                                <div class="map-overlay">
+                                    <i class="fa-solid fa-map-location-dot map-icon"></i>
+                                    <span>Foodie Hub Gourmet Fine Dining</span>
+                                    <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn btn-sm btn-primary">
+                                        <i class="fa-solid fa-directions"></i> Get Directions
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Quick Actions -->
+                        <div class="contact-actions-grid">
+                            <a href="tel:+919876543210" class="contact-pill"><i class="fa-solid fa-phone"></i> +91 98765 43210</a>
+                            <a href="mailto:support@foodiehub.com" class="contact-pill"><i class="fa-solid fa-envelope"></i> order@foodiehub.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Reviews Section -->
+                <div class="reviews-wrapper">
+                    <div class="section-header text-center">
+                        <span class="sub-heading"><i class="fa-solid fa-comments"></i> Guest Feedback</span>
+                        <h2 class="section-title">What Food Lovers Say</h2>
+                    </div>
+
+                    <div class="reviews-grid" id="reviewsGrid">
+                        <div class="review-card">
+                            <div class="rev-stars">★★★★★</div>
+                            <p class="rev-text">"The Truffle Ribeye and Butter Chicken are out of this world! Fastest delivery I've experienced. Packaging kept everything piping hot!"</p>
+                            <div class="rev-author">
+                                <div class="rev-avatar">P</div>
+                                <div>
+                                    <h5>Priya Sharma</h5>
+                                    <span>Verified Foodie</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="rev-stars">★★★★★</div>
+                            <p class="rev-text">"Booked a table for our anniversary. The candlelight arrangement and free mocktail made our night super romantic. Highly recommended!"</p>
+                            <div class="rev-author">
+                                <div class="rev-avatar">A</div>
+                                <div>
+                                    <h5>Arun Varma</h5>
+                                    <span>Google Reviewer</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="rev-stars">★★★★★</div>
+                            <p class="rev-text">"The Live Order Tracker is so cool! Super transparent experience and the food rewards points system saved me ₹100 today."</p>
+                            <div class="rev-author">
+                                <div class="rev-avatar">S</div>
+                                <div>
+                                    <h5>Sneha Patel</h5>
+                                    <span>Regular Customer</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add Review Form -->
+                    <div class="add-review-box">
+                        <h4>Leave Your Review</h4>
+                        <form id="addReviewForm" class="review-form">
+                            <div class="rev-form-inputs">
+                                <input type="text" id="revName" placeholder="Your Name" required>
+                                <select id="revRating" required>
+                                    <option value="5">★★★★★ (5 Stars - Exceptional)</option>
+                                    <option value="4">★★★★☆ (4 Stars - Very Good)</option>
+                                    <option value="3">★★★☆☆ (3 Stars - Average)</option>
+                                </select>
+                            </div>
+                            <textarea id="revComment" rows="2" placeholder="Write your dining experience..." required></textarea>
+                            <button type="submit" class="btn btn-secondary btn-sm"><i class="fa-solid fa-paper-plane"></i> Submit Review</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Interactive Bank Payment Processing Overlay -->
+    <div class="modal-overlay" id="paymentGatewayModal">
+        <div class="modal-card gateway-processing-card text-center">
+            <div class="gateway-spinner-wrap" id="gatewaySpinnerWrap">
+                <div class="gold-spinner"></div>
+                <i class="fa-solid fa-shield-halved gateway-shield"></i>
+            </div>
+            
+            <h3 id="gatewayStatusTitle">Processing Secure Payment...</h3>
+            <p id="gatewayStatusDesc" class="text-muted">Communicating with your payment bank gateway. Please do not close or refresh this page.</p>
+            
+            <div class="gateway-progress-bar">
+                <div class="gateway-progress-fill" id="gatewayProgressFill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Confirmation Modal -->
+    <div class="modal-overlay" id="orderConfirmModal">
+        <div class="modal-card confirm-card text-center">
+            <div class="confirm-icon-wrap">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h2>Order Placed Successfully! 🎉</h2>
+            <p class="confirm-desc">Thank you for ordering with Foodie Hub. Your meal is being freshly prepared by our master chef.</p>
+
+            <div class="confirm-details-box">
+                <div class="confirm-row">
+                    <span>Order Reference ID:</span>
+                    <strong id="confirmOrderId">#FH-9921</strong>
+                </div>
+                <div class="confirm-row">
+                    <span>Payment Method:</span>
+                    <strong id="confirmPayMethod">UPI / Scan & Pay</strong>
+                </div>
+                <div class="confirm-row">
+                    <span>Estimated Delivery Time:</span>
+                    <strong>25 Minutes</strong>
+                </div>
+                <div class="confirm-row">
+                    <span>Total Amount Paid:</span>
+                    <strong id="confirmAmount">₹0</strong>
+                </div>
+                <div class="confirm-row">
+                    <span>Reward Points Earned:</span>
+                    <strong class="text-gold" id="confirmPoints">+45 Points</strong>
+                </div>
+            </div>
+
+            <div class="confirm-actions">
+                <button class="btn btn-primary" id="trackMyOrderBtn">
+                    <i class="fa-solid fa-location-dot"></i> Track Live Order Status
+                </button>
+                <button class="btn btn-secondary" id="closeConfirmBtn">
+                    Back to Menu
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Confirmation Modal -->
+    <div class="modal-overlay" id="bookingConfirmModal">
+        <div class="modal-card confirm-card text-center">
+            <div class="confirm-icon-wrap gold-icon">
+                <i class="fa-solid fa-chair"></i>
+            </div>
+            <h2>Table Reserved Successfully! 🥂</h2>
+            <p class="confirm-desc">We look forward to serving you a memorable dining experience.</p>
+
+            <div class="confirm-details-box">
+                <div class="confirm-row">
+                    <span>Reservation Code:</span>
+                    <strong id="confirmBookCode">#TB-4819</strong>
+                </div>
+                <div class="confirm-row">
+                    <span>Guest Name:</span>
+                    <strong id="confirmBookName">John Doe</strong>
+                </div>
+                <div class="confirm-row">
+                    <span>Date & Time:</span>
+                    <strong id="confirmBookDateTime">Today at 08:30 PM</strong>
+                </div>
+                <div class="confirm-row">
+                    <span>Guests & Ambience:</span>
+                    <strong id="confirmBookDetails">2 Guests • Romantic Candlelight</strong>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" id="closeBookingConfirmBtn">
+                Done & View Menu
+            </button>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Action Button -->
+    <a href="https://wa.me/919876543210?text=Hi%20Foodie%20Hub!%20I%20would%20like%20to%20inquire%20about%20the%20menu." target="_blank" rel="noopener" class="floating-whatsapp-btn" aria-label="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="wa-tooltip">Need Help? Chat on WhatsApp</span>
+    </a>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <div class="brand-logo">
+                    <img src="images/logo.jpg" alt="Logo" class="logo-img">
+                    <span class="brand-name">FOODIE<span class="highlight">HUB</span></span>
+                </div>
+                <p>Delivering gourmet culinary excellence straight to your home or table with love and passion.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#menu">Food Menu</a></li>
+                    <li><a href="#cart-payment">Cart & Pay</a></li>
+                    <li><a href="#booking">Book Table</a></li>
+                    <li><a href="#tracker">Order Tracker</a></li>
+                    <li><a href="#rewards">VIP Rewards</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Popular Cuisines</h4>
+                <ul>
+                    <li><a href="#menu">North Indian & Biryani</a></li>
+                    <li><a href="#menu">Artisanal Italian Pizza</a></li>
+                    <li><a href="#menu">Gourmet Juicy Burgers</a></li>
+                    <li><a href="#menu">South Indian Dosa</a></li>
+                    <li><a href="#menu">Craft Desserts & Shakes</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact & Location</h4>
+                <p><i class="fa-solid fa-location-dot text-gold"></i> 124 Gourmet Boulevard, City</p>
+                <p><i class="fa-solid fa-phone text-gold"></i> +91 98765 43210</p>
+                <p><i class="fa-solid fa-envelope text-gold"></i> order@foodiehub.com</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom text-center">
+            <p>&copy; 2026 Foodie Hub Fine Dining. Created for Portfolio & Local Business Project. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- App JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
