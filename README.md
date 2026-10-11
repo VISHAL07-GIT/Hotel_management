@@ -1,10 +1,14 @@
 # 🍽️ Foodie Hub - Luxury Fine Dining & Gourmet Ordering System
 
-[![Live Demo](https://img.shields.io/badge/Demo-Live%20Project-f39c12?style=for-the-badge&logo=google-chrome&logoColor=white)](index.html)
+[![Live Demo on Vercel](https://img.shields.io/badge/Vercel-Live%20Demo-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://temporary-brisk-pearl-uh19n1u.vercel.app/)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](index.html)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](styles.css)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](app.js)
 [![GitHub License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+
+> 🚀 **Public Live Website**: [https://temporary-brisk-pearl-uh19n1u.vercel.app/](https://temporary-brisk-pearl-uh19n1u.vercel.app/)
+> 
+> 🔐 **Auth Portal**: [https://temporary-brisk-pearl-uh19n1u.vercel.app/auth.html](https://temporary-brisk-pearl-uh19n1u.vercel.app/auth.html)
 
 An award-winning, responsive web application for fine dining and gourmet online restaurant ordering. Built with modern dark-mode luxury aesthetics, glassmorphic UI elements, gold gradient accents, and an interactive client-side authentication and ordering engine.
 
