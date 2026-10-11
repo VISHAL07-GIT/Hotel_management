@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In & Sign Up | Foodie Hub Gourmet & Fine Dining</title>
+    <meta name="description" content="Sign in or register for Foodie Hub VIP Club. Earn instant welcome reward points, track orders in real-time, and reserve gourmet tables.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Base Stylesheet & Auth Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth-body">
+
+    <!-- Top Navigation Header -->
+    <header class="auth-header">
+        <div class="auth-nav-left">
+            <a href="index.html" class="back-home-link" id="backToHomeBtn">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Back to Restaurant</span>
+            </a>
+            <a href="index.html" class="brand-logo">
+                <img src="images/logo.jpg" alt="Foodie Hub Logo" class="logo-img">
+                <div class="brand-text">
+                    <span class="brand-name">FOODIE<span class="highlight">HUB</span></span>
+                    <span class="brand-tagline">Gourmet & Fine Dining</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="auth-nav-right">
+            <a href="index.html#cart-payment" class="cart-trigger-btn" id="authCartBtn" style="padding: 7px 14px; font-size: 0.85rem;">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-badge" id="authNavCartBadge" style="display: none;">0</span>
+                <span>Cart</span>
+            </a>
+            <a href="https://wa.me/919876543210?text=Hi%20Foodie%20Hub!%20I%20need%20assistance%20logging%20in." target="_blank" rel="noopener" class="auth-help-link">
+                <i class="fa-brands fa-whatsapp text-gold"></i>
+                <span>Concierge Help</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Auth Center Wrapper -->
+    <main class="auth-wrapper">
+        <div class="auth-container-grid">
+
+            <!-- Left: Brand Showcase & Member Benefits Panel -->
+            <aside class="auth-showcase-panel">
+                <div class="showcase-top">
+                    <div class="showcase-badge-pill">
+                        <i class="fa-solid fa-crown"></i> VIP Epicurean Circle
+                    </div>
+                    <h1 class="showcase-title">
+                        Savor Exclusive <span class="text-gradient">Culinary Privileges</span>
+                    </h1>
+                    <p class="showcase-desc">
+                        Join over 15,000 passionate food enthusiasts. Sign in or create an account to unlock instant gourmet dining rewards, real-time tracking, and priority reservations.
+                    </p>
+
+                    <!-- Showcase Perks List -->
+                    <div class="showcase-perks-list">
+                        <div class="perk-item">
+                            <div class="perk-icon-wrap">
+                                <i class="fa-solid fa-gift"></i>
+                            </div>
+                            <div class="perk-info">
+                                <h4>200 Welcome Bonus Points</h4>
+                                <p>Get 200 VIP points automatically credited upon signing up to redeem complimentary dessert or dining vouchers.</p>
+                            </div>
+                        </div>
+
+                        <div class="perk-item">
+                            <div class="perk-icon-wrap">
+                                <i class="fa-solid fa-percent"></i>
+                            </div>
+                            <div class="perk-info">
+                                <h4>20% OFF First Order</h4>
+                                <p>Unlock exclusive member promo code <strong>FOODIE20</strong> for instant savings on fine dining delivery.</p>
+                            </div>
+                        </div>
+
+                        <div class="perk-item">
+                            <div class="perk-icon-wrap">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div class="perk-info">
+                                <h4>Live Kitchen & GPS Tracker</h4>
+                                <p>Watch your artisanal meal be prepared by master chefs and tracked live to your doorstep.</p>
+                            </div>
+                        </div>
+
+                        <div class="perk-item">
+                            <div class="perk-icon-wrap">
+                                <i class="fa-solid fa-wine-glass"></i>
+                            </div>
+                            <div class="perk-info">
+                                <h4>Priority Table Booking</h4>
+                                <p>Instant reservations for candlelight dinners, chef’s tasting events, and private family cabanas.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Member Quote -->
+                    <div class="showcase-quote-card">
+                        <div class="quote-stars">★★★★★</div>
+                        <p class="quote-text">
+                            "The VIP club makes every dinner feel like a Michelin-starred experience. Fast delivery and rewards you actually want."
+                        </p>
+                        <div class="quote-author">— Chef Marcus Vance, Culinary Critic</div>
+                    </div>
+                </div>
+
+                <!-- Trust Badges Footer -->
+                <div class="showcase-trust">
+                    <span><i class="fa-solid fa-shield-halved"></i> 256-Bit SSL Encrypted</span>
+                    <span><i class="fa-solid fa-circle-check"></i> Verified Gourmet Hub</span>
+                    <span><i class="fa-solid fa-lock"></i> Zero Spam Guarantee</span>
+                </div>
+            </aside>
+
+            <!-- Right: Interactive Auth Card (Sign In & Sign Up) -->
+            <section class="auth-form-card">
+                
+                <!-- Segmented Tab Navigation -->
+                <nav class="auth-tab-bar" aria-label="Authentication Selector">
+                    <button type="button" class="auth-tab-btn active" id="tabSignIn" data-tab="signin">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        <span>Sign In</span>
+                    </button>
+                    <button type="button" class="auth-tab-btn" id="tabSignUp" data-tab="signup">
+                        <i class="fa-solid fa-user-plus"></i>
+                        <span>Create Account</span>
+                        <span class="badge-pill-micro">+200 Pts</span>
+                    </button>
+                </nav>
+
+                <!-- =========================================================
+                     VIEW 1: SIGN IN FORM
+                     ========================================================= -->
+                <div class="auth-view active" id="signinView">
+                    <header class="auth-view-header">
+                        <h2>Welcome Back</h2>
+                        <p>Sign in to your Foodie Hub account to access your orders and rewards.</p>
+                    </header>
+
+                    <!-- 1-Click Demo Accounts Quick-Fill Box -->
+                    <div class="demo-accounts-box">
+                        <div class="demo-title-row">
+                            <span><i class="fa-solid fa-wand-magic-sparkles"></i> 1-Click Quick Demo Login</span>
+                            <small class="text-gold">Ready to test</small>
+                        </div>
+                        <div class="demo-chips">
+                            <button type="button" class="demo-chip-btn" data-demo-email="sophia.vip@example.com" data-demo-pass="VipChef#99">
+                                <i class="fa-solid fa-crown text-gold"></i> VIP Member (Sophia)
+                            </button>
+                            <button type="button" class="demo-chip-btn" data-demo-email="alex.gourmet@example.com" data-demo-pass="Foodie@2026">
+                                <i class="fa-solid fa-user"></i> Gourmet Guest (Alex)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Social Login Grid -->
+                    <div class="social-login-grid">
+                        <button type="button" class="social-btn google" data-provider="Google" aria-label="Sign in with Google">
+                            <i class="fa-brands fa-google"></i>
+                            <span>Google</span>
+                        </button>
+                        <button type="button" class="social-btn apple" data-provider="Apple" aria-label="Sign in with Apple">
+                            <i class="fa-brands fa-apple"></i>
+                            <span>Apple</span>
+                        </button>
+                        <button type="button" class="social-btn facebook" data-provider="Facebook" aria-label="Sign in with Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                            <span>Facebook</span>
+                        </button>
+                    </div>
+
+                    <div class="auth-divider">
+                        <span>Or continue with credentials</span>
+                    </div>
+
+                    <!-- Sign In Main Form -->
+                    <form id="signInForm" novalidate>
+                        <div class="form-group">
+                            <label class="form-label" for="signInEmail">Email or Phone Number</label>
+                            <div class="input-icon-wrap">
+                                <i class="fa-solid fa-envelope input-icon"></i>
+                                <input 
+                                    type="text" 
+                                    id="signInEmail" 
+                                    class="form-input" 
+                                    placeholder="e.g. sophia.vip@example.com" 
+                                    required 
+                                    autocomplete="username"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="signInPassword">Password</label>
+                            <div class="input-icon-wrap">
+                                <i class="fa-solid fa-lock input-icon"></i>
+                                <input 
+                                    type="password" 
+                                    id="signInPassword" 
+                                    class="form-input" 
+                                    placeholder="Enter your secret password" 
+                                    required 
+                                    autocomplete="current-password"
+                                >
+                                <button type="button" class="password-toggle-btn" data-target="signInPassword" aria-label="Toggle password view">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-options-row">
+                            <label class="custom-checkbox">
+                                <input type="checkbox" id="signInRemember" checked>
+                                <span>Remember me</span>
+                            </label>
+                            <a href="#forgot" class="forgot-link" id="forgotPassTrigger">Forgot password?</a>
+                        </div>
+
+                        <button type="submit" class="auth-submit-btn" id="signInSubmitBtn">
+                            <span class="spinner"></span>
+                            <span class="btn-text-content">
+                                <span>Sign In to Foodie Hub</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </span>
+                        </button>
+                    </form>
+
+                    <div class="auth-switch-footer">
+                        <span>New to Foodie Hub?</span>
+                        <a href="#signup" class="auth-switch-link" data-switch-to="signup">Create an Account & Claim 200 Pts</a>
+                    </div>
+                </div>
+
+                <!-- =========================================================
+                     VIEW 2: SIGN UP / CREATE ACCOUNT FORM
+                     ========================================================= -->
+                <div class="auth-view" id="signupView">
+                    <header class="auth-view-header">
+                        <h2>Create Your Account</h2>
+                        <p>Join the Foodie Hub family and savor fine dining privileges.</p>
+                    </header>
+
+                    <!-- VIP Bonus Callout Banner -->
+                    <div class="vip-bonus-banner">
+                        <div class="vip-bonus-icon">
+                            <i class="fa-solid fa-gift"></i>
+                        </div>
+                        <div class="vip-bonus-text">
+                            <h4>Instant 200 VIP Points Welcome Gift</h4>
+                            <p>Register now to claim 200 bonus reward points ready to redeem on your first feast.</p>
+                        </div>
+                    </div>
+
+                    <!-- Social Signup Grid -->
+                    <div class="social-login-grid">
+                        <button type="button" class="social-btn google" data-provider="Google" aria-label="Sign up with Google">
+                            <i class="fa-brands fa-google"></i>
+                            <span>Google</span>
+                        </button>
+                        <button type="button" class="social-btn apple" data-provider="Apple" aria-label="Sign up with Apple">
+                            <i class="fa-brands fa-apple"></i>
+                            <span>Apple</span>
+                        </button>
+                        <button type="button" class="social-btn facebook" data-provider="Facebook" aria-label="Sign up with Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                            <span>Facebook</span>
+                        </button>
+                    </div>
+
+                    <div class="auth-divider">
+                        <span>Or register with email</span>
+                    </div>
+
+                    <!-- Sign Up Main Form -->
+                    <form id="signUpForm" novalidate>
+                        <div class="form-group">
+                            <label class="form-label" for="signUpName">Full Name</label>
+                            <div class="input-icon-wrap">
+                                <i class="fa-solid fa-user input-icon"></i>
+                                <input 
+                                    type="text" 
+                                    id="signUpName" 
+                                    class="form-input" 
+                                    placeholder="e.g. Marcus Vance" 
+                                    required 
+                                    autocomplete="name"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="signUpEmail">Email Address</label>
+                            <div class="input-icon-wrap">
+                                <i class="fa-solid fa-envelope input-icon"></i>
+                                <input 
+                                    type="email" 
+                                    id="signUpEmail" 
+                                    class="form-input" 
+                                    placeholder="e.g. marcus@example.com" 
+                                    required 
+                                    autocomplete="email"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="signUpPhone">Phone Number (For Order Tracking)</label>
+                            <div class="input-icon-wrap">
+                                <i class="fa-solid fa-phone input-icon"></i>
+                                <input 
+                                    type="tel" 
+                                    id="signUpPhone" 
+                                    class="form-input" 
+                                    placeholder="e.g. +91 98765 43210" 
+                                    required 
+                                    autocomplete="tel"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="signUpPassword">Create Secure Password</label>
+                            <div class="input-icon-wrap">
+                                <i class="fa-solid fa-lock input-icon"></i>
+                                <input 
+                                    type="password" 
+                                    id="signUpPassword" 
+                                    class="form-input" 
+                                    placeholder="At least 6 characters" 
+                                    required 
+                                    autocomplete="new-password"
+                                >
+                                <button type="button" class="password-toggle-btn" data-target="signUpPassword" aria-label="Toggle password view">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+
+                            <!-- Real-time Password Strength Meter -->
+                            <div class="password-strength-box">
+                                <div class="strength-bar-track">
+                                    <div class="strength-step"></div>
+                                    <div class="strength-step"></div>
+                                    <div class="strength-step"></div>
+                                    <div class="strength-step"></div>
+                                </div>
+                                <div class="strength-meta">
+                                    <span>Password Security: <strong id="strengthLabel" class="strength-text">None</strong></span>
+                                    <span>Min. 8 chars, 1 uppercase & 1 number recommended</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="signUpConfirmPassword">Confirm Password</label>
+                            <div class="input-icon-wrap">
+                                <i class="fa-solid fa-shield-halved input-icon"></i>
+                                <input 
+                                    type="password" 
+                                    id="signUpConfirmPassword" 
+                                    class="form-input" 
+                                    placeholder="Re-enter your password" 
+                                    required 
+                                    autocomplete="new-password"
+                                >
+                                <button type="button" class="password-toggle-btn" data-target="signUpConfirmPassword" aria-label="Toggle password view">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="field-validation-msg" id="confirmPassMatchMsg"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="custom-checkbox">
+                                <input type="checkbox" id="signUpTerms" checked required>
+                                <span>I agree to the <a href="#" class="text-gold">Terms of Dining</a> and want to claim my <strong>200 VIP Points</strong>.</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="auth-submit-btn" id="signUpSubmitBtn">
+                            <span class="spinner"></span>
+                            <span class="btn-text-content">
+                                <span>Create Account & Claim 200 Pts</span>
+                                <i class="fa-solid fa-crown text-gold"></i>
+                            </span>
+                        </button>
+                    </form>
+
+                    <div class="auth-switch-footer">
+                        <span>Already registered?</span>
+                        <a href="#signin" class="auth-switch-link" data-switch-to="signin">Sign In to Your Account</a>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <!-- Forgot Password Modal -->
+    <div class="auth-modal" id="forgotPassModal" role="dialog" aria-modal="true" aria-labelledby="forgotModalTitle">
+        <div class="auth-modal-dialog">
+            <button type="button" class="modal-close-btn" id="closeForgotModalBtn" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-header-icon">
+                <i class="fa-solid fa-key"></i>
+            </div>
+
+            <h3 id="forgotModalTitle">Reset Account Password</h3>
+            <p>Enter your registered email address and we'll send you an instant verification code to recover your account.</p>
+
+            <form id="forgotPassForm">
+                <div class="form-group">
+                    <label class="form-label" for="forgotEmailInput">Registered Email Address</label>
+                    <div class="input-icon-wrap">
+                        <i class="fa-solid fa-envelope input-icon"></i>
+                        <input 
+                            type="email" 
+                            id="forgotEmailInput" 
+                            class="form-input" 
+                            placeholder="e.g. sophia.vip@example.com" 
+                            required
+                        >
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-secondary btn-block mb-24" id="sendResetOtpBtn" style="padding: 11px;">
+                    <i class="fa-solid fa-paper-plane text-gold"></i> Send Reset Code
+                </button>
+
+                <!-- Hidden OTP & New Pass fields (revealed after clicking Send Code) -->
+                <div id="resetOtpGroup" class="form-group" style="display: none;">
+                    <label class="form-label" for="resetOtpInput">6-Digit Verification Code</label>
+                    <div class="input-icon-wrap">
+                        <i class="fa-solid fa-shield-cat input-icon"></i>
+                        <input 
+                            type="text" 
+                            id="resetOtpInput" 
+                            class="form-input" 
+                            placeholder="Enter 6-digit code" 
+                            maxlength="6"
+                        >
+                    </div>
+                </div>
+
+                <div id="resetNewPassGroup" class="form-group" style="display: none;">
+                    <label class="form-label" for="newPasswordInput">New Password</label>
+                    <div class="input-icon-wrap">
+                        <i class="fa-solid fa-lock input-icon"></i>
+                        <input 
+                            type="password" 
+                            id="newPasswordInput" 
+                            class="form-input" 
+                            placeholder="Enter at least 6 characters"
+                        >
+                    </div>
+                </div>
+
+                <button type="submit" class="auth-submit-btn" id="submitNewPasswordBtn" style="display: none;">
+                    <span>Update Password & Sign In</span>
+                    <i class="fa-solid fa-check"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Page Footer -->
+    <footer class="auth-page-footer">
+        <p>
+            &copy; 2026 Foodie Hub Fine Dining. Secure Client Authentication System.
+            <a href="index.html" style="margin-left: 12px;"><i class="fa-solid fa-utensils text-gold"></i> Back to Main Restaurant Menu</a>
+        </p>
+    </footer>
+
+    <!-- App JavaScript -->
+    <script src="auth.js"></script>
+</body>
+</html>

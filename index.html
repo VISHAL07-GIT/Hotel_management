@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth.css">
 </head>
 <body>
 
@@ -35,9 +36,16 @@
                 <a href="#tracker" class="nav-item"><i class="fa-solid fa-location-crosshairs"></i> Live Tracker</a>
                 <a href="#rewards" class="nav-item"><i class="fa-solid fa-crown"></i> Rewards</a>
                 <a href="#about" class="nav-item"><i class="fa-solid fa-circle-info"></i> About & Contact</a>
+                <a href="auth.html" class="nav-item mobile-auth-link" id="mobileAuthLink"><i class="fa-solid fa-user-circle"></i> Sign In / Join VIP</a>
             </nav>
 
             <div class="nav-actions">
+                <div id="navUserSlot">
+                    <a href="auth.html" class="nav-auth-btn" id="navSignInBtn">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        <span>Sign In</span>
+                    </a>
+                </div>
                 <button class="cart-trigger-btn" id="cartBtn" aria-label="Open Shopping Cart">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span class="cart-badge" id="cartBadge">0</span>
@@ -966,6 +974,163 @@
         </div>
     </div>
 
+    <!-- Entry Welcome Authentication Gate Modal (Shown on visit if not registered) -->
+    <div class="modal-overlay" id="entryAuthModal" style="z-index: 3500;">
+        <div class="modal-card entry-auth-card" style="max-width: 500px; border: 1px solid var(--border-gold); box-shadow: 0 25px 60px rgba(0,0,0,0.85), 0 0 35px rgba(243, 156, 18, 0.25);">
+            <div class="modal-header" style="background: rgba(18, 21, 28, 0.95); border-bottom: 1px solid var(--border-color); padding: 16px 22px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <img src="images/logo.jpg" alt="Logo" style="width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--gold-primary);">
+                    <div>
+                        <h3 style="font-size: 1.1rem; margin: 0; line-height: 1.2;">FOODIE<span class="highlight">HUB</span></h3>
+                        <span style="font-size: 0.72rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">VIP Dining Portal</span>
+                    </div>
+                </div>
+                <button type="button" class="modal-close" id="closeEntryAuthModal" aria-label="Dismiss and explore" title="Explore as guest" style="cursor: pointer;">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div style="padding: 22px 26px; background: var(--bg-card);">
+                <div class="text-center" style="margin-bottom: 18px;">
+                    <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(243, 156, 18, 0.12); border: 1px solid var(--border-gold); padding: 4px 12px; border-radius: var(--radius-full); font-size: 0.78rem; color: var(--gold-primary); font-weight: 600; margin-bottom: 8px;">
+                        <i class="fa-solid fa-crown"></i> One-Time Registration
+                    </div>
+                    <h2 style="font-family: var(--font-heading); font-size: 1.55rem; color: #fff; margin-bottom: 4px;">Welcome to Foodie Hub</h2>
+                    <p style="color: var(--text-secondary); font-size: 0.86rem; line-height: 1.4;">
+                        Sign In or Register once. Once registered, you will <strong>never need to sign in again</strong>!
+                    </p>
+                </div>
+
+                <!-- Segmented Tabs -->
+                <div class="auth-tab-bar" style="margin-bottom: 18px;">
+                    <button type="button" class="auth-tab-btn active" id="entryTabSignIn" data-entry-tab="signin">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In
+                    </button>
+                    <button type="button" class="auth-tab-btn" id="entryTabSignUp" data-entry-tab="signup">
+                        <i class="fa-solid fa-user-plus"></i> Register (+200 Pts)
+                    </button>
+                </div>
+
+                <!-- SIGN IN TAB VIEW -->
+                <div id="entrySignInView" class="entry-auth-view active">
+                    <!-- 1-Click Demo Quick Fill -->
+                    <div class="demo-accounts-box" style="margin-bottom: 14px; padding: 10px 14px;">
+                        <div class="demo-title-row" style="margin-bottom: 6px;">
+                            <span><i class="fa-solid fa-wand-magic-sparkles"></i> 1-Click Instant Login</span>
+                            <small class="text-gold">Ready to test</small>
+                        </div>
+                        <div class="demo-chips">
+                            <button type="button" class="demo-chip-btn" id="entryDemoVipBtn">
+                                <i class="fa-solid fa-crown text-gold"></i> VIP Member (Sophia)
+                            </button>
+                            <button type="button" class="demo-chip-btn" id="entryDemoAlexBtn">
+                                <i class="fa-solid fa-user"></i> Gourmet Guest (Alex)
+                            </button>
+                        </div>
+                    </div>
+
+                    <form id="entrySignInForm">
+                        <div class="form-group" style="margin-bottom: 12px;">
+                            <label class="form-label" style="font-size: 0.82rem;" for="entrySignInEmail">Email or Phone</label>
+                            <div class="input-icon-wrap">
+                                <i class="fa-solid fa-envelope input-icon"></i>
+                                <input type="text" id="entrySignInEmail" class="form-input" placeholder="e.g. sophia.vip@example.com" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 16px;">
+                            <label class="form-label" style="font-size: 0.82rem;" for="entrySignInPass">Password</label>
+                            <div class="input-icon-wrap">
+                                <i class="fa-solid fa-lock input-icon"></i>
+                                <input type="password" id="entrySignInPass" class="form-input" placeholder="Enter password" required>
+                                <button type="button" class="password-toggle-btn" data-target="entrySignInPass" aria-label="Toggle password view">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="auth-submit-btn" id="entrySignInBtn" style="padding: 12px 20px;">
+                            <span class="btn-text-content">
+                                <span>Sign In & Continue</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </span>
+                        </button>
+                    </form>
+
+                    <div style="text-align: center; margin-top: 12px; font-size: 0.84rem; color: var(--text-secondary);">
+                        Don't have an account? <a href="#" id="entryGoToSignUp" style="color: var(--gold-primary); font-weight: 600;">Register Now (+200 Pts)</a>
+                    </div>
+                </div>
+
+                <!-- SIGN UP TAB VIEW -->
+                <div id="entrySignUpView" class="entry-auth-view" style="display: none;">
+                    <div class="vip-bonus-banner" style="margin-bottom: 14px; padding: 10px 14px;">
+                        <i class="fa-solid fa-gift" style="font-size: 1.3rem; color: var(--gold-primary);"></i>
+                        <div>
+                            <h4 style="font-size: 0.84rem; margin: 0; color: #fff;">+200 Welcome VIP Points</h4>
+                            <p style="font-size: 0.74rem; margin: 0; color: var(--text-secondary);">Instantly credited upon one-time registration!</p>
+                        </div>
+                    </div>
+
+                    <form id="entrySignUpForm">
+                        <div class="form-group" style="margin-bottom: 11px;">
+                            <label class="form-label" style="font-size: 0.82rem;" for="entrySignUpName">Full Name</label>
+                            <div class="input-icon-wrap">
+                                <i class="fa-solid fa-user input-icon"></i>
+                                <input type="text" id="entrySignUpName" class="form-input" placeholder="e.g. Marcus Vance" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 11px;">
+                            <label class="form-label" style="font-size: 0.82rem;" for="entrySignUpEmail">Email Address</label>
+                            <div class="input-icon-wrap">
+                                <i class="fa-solid fa-envelope input-icon"></i>
+                                <input type="email" id="entrySignUpEmail" class="form-input" placeholder="e.g. marcus@example.com" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 11px;">
+                            <label class="form-label" style="font-size: 0.82rem;" for="entrySignUpPhone">Phone Number</label>
+                            <div class="input-icon-wrap">
+                                <i class="fa-solid fa-phone input-icon"></i>
+                                <input type="tel" id="entrySignUpPhone" class="form-input" placeholder="e.g. +91 98765 43210" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="form-label" style="font-size: 0.82rem;" for="entrySignUpPass">Password</label>
+                            <div class="input-icon-wrap">
+                                <i class="fa-solid fa-lock input-icon"></i>
+                                <input type="password" id="entrySignUpPass" class="form-input" placeholder="Create password (min 6 chars)" required>
+                                <button type="button" class="password-toggle-btn" data-target="entrySignUpPass" aria-label="Toggle password view">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="auth-submit-btn" id="entrySignUpBtn" style="padding: 12px 20px;">
+                            <span class="btn-text-content">
+                                <span>Register & Claim 200 Pts</span>
+                                <i class="fa-solid fa-crown text-gold"></i>
+                            </span>
+                        </button>
+                    </form>
+
+                    <div style="text-align: center; margin-top: 12px; font-size: 0.84rem; color: var(--text-secondary);">
+                        Already registered? <a href="#" id="entryGoToSignIn" style="color: var(--gold-primary); font-weight: 600;">Sign In here</a>
+                    </div>
+                </div>
+
+                <!-- Guest Dismiss Link -->
+                <div style="text-align: center; margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.08);">
+                    <button type="button" id="entryGuestDismissBtn" style="background: transparent; color: var(--text-muted); font-size: 0.8rem; cursor: pointer; transition: color 0.2s;">
+                        <i class="fa-solid fa-eye"></i> Preview Menu as Guest for now &rarr;
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Floating WhatsApp Action Button -->
     <a href="https://wa.me/919876543210?text=Hi%20Foodie%20Hub!%20I%20would%20like%20to%20inquire%20about%20the%20menu." target="_blank" rel="noopener" class="floating-whatsapp-btn" aria-label="Chat on WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
@@ -1001,6 +1166,8 @@
                     <li><a href="#booking">Book Table</a></li>
                     <li><a href="#tracker">Order Tracker</a></li>
                     <li><a href="#rewards">VIP Rewards</a></li>
+                    <li><a href="auth.html#signin"><i class="fa-solid fa-lock text-gold"></i> Sign In / Account</a></li>
+                    <li><a href="auth.html#signup"><i class="fa-solid fa-crown text-gold"></i> Join VIP (+200 Pts)</a></li>
                 </ul>
             </div>
 

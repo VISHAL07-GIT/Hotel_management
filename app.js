@@ -195,6 +195,8 @@ let trackerStep = 2;
 // --------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
+    initAuthNavbarState();
+    initEntryAuthGate();
     renderPopularDishes();
     renderMenu();
     updateCartUI();
@@ -248,6 +250,392 @@ function initNavigation() {
     // Top Cart Trigger Button scrolls directly to Cart & Pay section
     document.getElementById('cartBtn')?.addEventListener('click', () => {
         document.getElementById('cart-payment')?.scrollIntoView({ behavior: 'smooth' });
+    });
+}
+
+// --------------------------------------------------------------------------
+// 4b. Auth State & User Session Integration
+// --------------------------------------------------------------------------
+const DEFAULT_DEMO_USERS = [
+    {
+        id: "usr-01",
+        name: "Sophia Vance",
+        email: "sophia.vip@example.com",
+        phone: "+91 98765 12345",
+        password: "VipChef#99",
+        tier: "VIP Connoisseur",
+        points: 850,
+        createdAt: "2026-01-15"
+    },
+    {
+        id: "usr-02",
+        name: "Alex Mercer",
+        email: "alex.gourmet@example.com",
+        phone: "+91 98111 22334",
+        password: "Foodie@2026",
+        tier: "Gold Gourmet",
+        points: 350,
+        createdAt: "2026-02-20"
+    }
+];
+
+function getUsersList() {
+    try {
+        const stored = localStorage.getItem('foodie_hub_users');
+        if (!stored) {
+            localStorage.setItem('foodie_hub_users', JSON.stringify(DEFAULT_DEMO_USERS));
+            return DEFAULT_DEMO_USERS;
+        }
+        return JSON.parse(stored);
+    } catch (e) {
+        return DEFAULT_DEMO_USERS;
+    }
+}
+
+function getCurrentUser() {
+    try {
+        const u = localStorage.getItem('foodie_hub_current_user');
+        return u ? JSON.parse(u) : null;
+    } catch (e) {
+        return null;
+    }
+}
+
+function initAuthNavbarState() {
+    const userSlot = document.getElementById('navUserSlot');
+    const mobileAuthLink = document.getElementById('mobileAuthLink');
+    if (!userSlot) return;
+
+    const currentUser = getCurrentUser();
+
+    if (currentUser) {
+        const initial = (currentUser.name || 'User').charAt(0).toUpperCase();
+        const firstName = (currentUser.name || 'Member').split(' ')[0];
+        const points = currentUser.points !== undefined ? currentUser.points : userPoints;
+        const tier = currentUser.tier || 'VIP Member';
+
+        // Auto sync points in current page state
+        userPoints = points;
+        updateRewardsUI();
+
+        // Auto-fill booking and checkout inputs if present
+        const bookNameInput = document.getElementById('bookName');
+        if (bookNameInput && !bookNameInput.value) {
+            bookNameInput.value = currentUser.name;
+        }
+
+        const pCustNameInput = document.getElementById('pCustName');
+        if (pCustNameInput && !pCustNameInput.value) {
+            pCustNameInput.value = currentUser.name;
+        }
+
+        const pCustPhoneInput = document.getElementById('pCustPhone');
+        if (pCustPhoneInput && !pCustPhoneInput.value && currentUser.phone) {
+            pCustPhoneInput.value = currentUser.phone;
+        }
+
+        // Render Dropdown in Navbar
+        userSlot.innerHTML = `
+            <div class="user-profile-menu" id="userProfileMenu">
+                <div class="user-profile-trigger" id="userProfileTrigger" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" title="Click to view account">
+                    <div class="user-avatar-circle">${initial}</div>
+                    <span class="user-nav-name">${firstName}</span>
+                    <span class="user-nav-badge"><i class="fa-solid fa-crown text-gold"></i> ${points} Pts</span>
+                    <i class="fa-solid fa-chevron-down" style="font-size: 0.72rem; color: var(--text-muted); margin-left: 2px;"></i>
+                </div>
+                <div class="user-profile-dropdown" id="userProfileDropdown">
+                    <div class="dropdown-user-header">
+                        <div class="dh-name">${currentUser.name}</div>
+                        <div class="dh-email">${currentUser.email || currentUser.phone || ''}</div>
+                        <div class="dh-pts">
+                            <i class="fa-solid fa-gem text-gold"></i>
+                            <span>${tier} • ${points} Points</span>
+                        </div>
+                    </div>
+                    <a href="#rewards" class="dropdown-item">
+                        <i class="fa-solid fa-crown text-gold"></i>
+                        <span>Redeem Rewards (${points} Pts)</span>
+                    </a>
+                    <a href="#tracker" class="dropdown-item">
+                        <i class="fa-solid fa-location-crosshairs text-gold"></i>
+                        <span>Live Order Tracker</span>
+                    </a>
+                    <a href="#booking" class="dropdown-item">
+                        <i class="fa-solid fa-calendar-check text-gold"></i>
+                        <span>My Table Bookings</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-item logout" id="logoutBtn">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Sign Out</span>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        const menu = document.getElementById('userProfileMenu');
+        const trigger = document.getElementById('userProfileTrigger');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        if (trigger && menu) {
+            trigger.onclick = (e) => {
+                e.stopPropagation();
+                menu.classList.toggle('open');
+            };
+
+            document.addEventListener('click', (e) => {
+                if (!menu.contains(e.target)) {
+                    menu.classList.remove('open');
+                }
+            });
+        }
+
+        if (logoutBtn) {
+            logoutBtn.onclick = () => {
+                localStorage.removeItem('foodie_hub_current_user');
+                sessionStorage.removeItem('foodie_hub_guest_dismissed');
+                showToast('Signed out successfully. Come back soon! 👋', 'info');
+                initAuthNavbarState();
+                initEntryAuthGate();
+            };
+        }
+
+        // Mobile Link
+        if (mobileAuthLink) {
+            mobileAuthLink.innerHTML = `<i class="fa-solid fa-crown text-gold"></i> Hi, ${firstName} (${points} Pts) • Logout`;
+            mobileAuthLink.href = "#";
+            mobileAuthLink.onclick = (e) => {
+                e.preventDefault();
+                localStorage.removeItem('foodie_hub_current_user');
+                sessionStorage.removeItem('foodie_hub_guest_dismissed');
+                showToast('Signed out successfully.', 'info');
+                initAuthNavbarState();
+                initEntryAuthGate();
+            };
+        }
+
+    } else {
+        // Not logged in: Show stylish Sign In button which triggers the entry modal or redirects
+        userSlot.innerHTML = `
+            <button type="button" class="nav-auth-btn" id="navSignInBtn">
+                <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                <span>Sign In</span>
+            </button>
+        `;
+
+        document.getElementById('navSignInBtn')?.addEventListener('click', () => {
+            const entryModal = document.getElementById('entryAuthModal');
+            if (entryModal) {
+                entryModal.classList.add('active');
+            } else {
+                window.location.href = 'auth.html';
+            }
+        });
+
+        if (mobileAuthLink) {
+            mobileAuthLink.innerHTML = `<i class="fa-solid fa-user-circle"></i> Sign In / Join VIP`;
+            mobileAuthLink.href = "#";
+            mobileAuthLink.onclick = (e) => {
+                e.preventDefault();
+                const entryModal = document.getElementById('entryAuthModal');
+                if (entryModal) {
+                    entryModal.classList.add('active');
+                    document.getElementById('navLinks')?.classList.remove('active');
+                } else {
+                    window.location.href = 'auth.html';
+                }
+            };
+        }
+    }
+}
+
+// --------------------------------------------------------------------------
+// 4c. Entry Authentication Gate Modal (One-Time Registration Prompt)
+// --------------------------------------------------------------------------
+function initEntryAuthGate() {
+    const entryModal = document.getElementById('entryAuthModal');
+    if (!entryModal) return;
+
+    // Check if user is ALREADY registered / signed in
+    const currentUser = getCurrentUser();
+    if (currentUser) {
+        // One-time registered means NEVER ask again!
+        entryModal.classList.remove('active');
+        return;
+    }
+
+    // Check if user dismissed as guest during this specific session
+    if (sessionStorage.getItem('foodie_hub_guest_dismissed') === 'true') {
+        return;
+    }
+
+    // Unregistered user entering website: Automatically prompt sign in / register!
+    setTimeout(() => {
+        // Double check they haven't logged in in the meantime
+        if (!getCurrentUser()) {
+            entryModal.classList.add('active');
+        }
+    }, 450);
+
+    // Segmented tab switching
+    const tabSignIn = document.getElementById('entryTabSignIn');
+    const tabSignUp = document.getElementById('entryTabSignUp');
+    const viewSignIn = document.getElementById('entrySignInView');
+    const viewSignUp = document.getElementById('entrySignUpView');
+
+    function switchEntryTab(tab) {
+        if (tab === 'signin') {
+            tabSignIn?.classList.add('active');
+            tabSignUp?.classList.remove('active');
+            if (viewSignIn) viewSignIn.style.display = 'block';
+            if (viewSignUp) viewSignUp.style.display = 'none';
+        } else {
+            tabSignUp?.classList.add('active');
+            tabSignIn?.classList.remove('active');
+            if (viewSignUp) viewSignUp.style.display = 'block';
+            if (viewSignIn) viewSignIn.style.display = 'none';
+        }
+    }
+
+    tabSignIn?.addEventListener('click', () => switchEntryTab('signin'));
+    tabSignUp?.addEventListener('click', () => switchEntryTab('signup'));
+    document.getElementById('entryGoToSignUp')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        switchEntryTab('signup');
+    });
+    document.getElementById('entryGoToSignIn')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        switchEntryTab('signin');
+    });
+
+    // 1-Click Demo Buttons in Entry Modal
+    document.getElementById('entryDemoVipBtn')?.addEventListener('click', () => {
+        const emailInput = document.getElementById('entrySignInEmail');
+        const passInput = document.getElementById('entrySignInPass');
+        if (emailInput && passInput) {
+            emailInput.value = 'sophia.vip@example.com';
+            passInput.value = 'VipChef#99';
+            showToast('Credentials filled for VIP Member Sophia! Signing in...', 'info');
+            setTimeout(() => {
+                document.getElementById('entrySignInForm')?.dispatchEvent(new Event('submit'));
+            }, 350);
+        }
+    });
+
+    document.getElementById('entryDemoAlexBtn')?.addEventListener('click', () => {
+        const emailInput = document.getElementById('entrySignInEmail');
+        const passInput = document.getElementById('entrySignInPass');
+        if (emailInput && passInput) {
+            emailInput.value = 'alex.gourmet@example.com';
+            passInput.value = 'Foodie@2026';
+            showToast('Credentials filled for Alex! Signing in...', 'info');
+            setTimeout(() => {
+                document.getElementById('entrySignInForm')?.dispatchEvent(new Event('submit'));
+            }, 350);
+        }
+    });
+
+    // Sign In Form Submission
+    document.getElementById('entrySignInForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('entrySignInEmail')?.value.trim();
+        const password = document.getElementById('entrySignInPass')?.value;
+
+        if (!email || !password) {
+            showToast('Please enter both email/phone and password.', 'error');
+            return;
+        }
+
+        const users = getUsersList();
+        const user = users.find(u => 
+            (u.email.toLowerCase() === email.toLowerCase() || u.phone === email) && 
+            u.password === password
+        );
+
+        if (user) {
+            // Save persistent login
+            localStorage.setItem('foodie_hub_current_user', JSON.stringify(user));
+            if (user.points !== undefined) {
+                localStorage.setItem('foodie_hub_points', user.points);
+            }
+            entryModal.classList.remove('active');
+            initAuthNavbarState();
+            showToast(`Welcome back, ${user.name}! You are now permanently signed in. ✨`, 'success');
+        } else {
+            showToast('Invalid credentials. Check email & password or use 1-Click Demo.', 'error');
+        }
+    });
+
+    // Sign Up / Register Form Submission
+    document.getElementById('entrySignUpForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('entrySignUpName')?.value.trim();
+        const email = document.getElementById('entrySignUpEmail')?.value.trim();
+        const phone = document.getElementById('entrySignUpPhone')?.value.trim();
+        const password = document.getElementById('entrySignUpPass')?.value;
+
+        if (!name || !email || !phone || !password) {
+            showToast('Please fill all registration fields.', 'error');
+            return;
+        }
+
+        if (password.length < 6) {
+            showToast('Password should be at least 6 characters.', 'error');
+            return;
+        }
+
+        const users = getUsersList();
+        if (users.find(u => u.email.toLowerCase() === email.toLowerCase())) {
+            showToast('Account already exists with this email. Please Sign In.', 'error');
+            switchEntryTab('signin');
+            return;
+        }
+
+        // Create new user with 200 welcome bonus points
+        const newUser = {
+            id: `usr-${Date.now()}`,
+            name: name,
+            email: email,
+            phone: phone,
+            password: password,
+            tier: "Gold VIP Member",
+            points: 200,
+            createdAt: new Date().toISOString()
+        };
+
+        users.push(newUser);
+        localStorage.setItem('foodie_hub_users', JSON.stringify(users));
+        localStorage.setItem('foodie_hub_current_user', JSON.stringify(newUser));
+        localStorage.setItem('foodie_hub_points', 200);
+
+        entryModal.classList.remove('active');
+        initAuthNavbarState();
+        showToast(`🎉 Registration successful, ${name}! +200 VIP Points credited! You will stay signed in permanently.`, 'success');
+    });
+
+    // Dismiss / Explore as Guest handler
+    const dismissModal = () => {
+        entryModal.classList.remove('active');
+        sessionStorage.setItem('foodie_hub_guest_dismissed', 'true');
+        showToast('Exploring as Guest. Click "Sign In" anytime in the navbar.', 'info');
+    };
+
+    document.getElementById('closeEntryAuthModal')?.addEventListener('click', dismissModal);
+    document.getElementById('entryGuestDismissBtn')?.addEventListener('click', dismissModal);
+
+    // Password Toggle Visibility
+    entryModal.querySelectorAll('.password-toggle-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetId = btn.dataset.target;
+            const input = document.getElementById(targetId);
+            if (!input) return;
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+            const icon = btn.querySelector('i');
+            if (icon) {
+                icon.className = isPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+            }
+        });
     });
 }
 
